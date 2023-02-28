@@ -1,0 +1,11 @@
+{
+  "name": "team-permissions",
+  "version": "1.0.0",
+  "description": "Team permissions app in Node.js using Auth0 and Permify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ussama Zubair",
+  "license": "ISC"
+}
