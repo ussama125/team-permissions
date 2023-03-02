@@ -1,0 +1,45 @@
+entity user {}
+
+entity organization {
+
+    //organizational roles
+    relation admin @user
+    relation member @user
+
+}
+
+entity team {
+
+    // represents admin of the team
+    relation admin @user
+
+    // represents direct member of the team
+    relation member @user
+
+    // reference for organization that team belong
+    relation org @organization
+
+    // organization admins or team admins can edit, delete the team details
+    action edit = org.admin or admin
+    action delete = org.admin or admin
+
+    // to invite someone you need to be admin and either owner or member of this team
+    action invite = org.admin and (admin or member)
+
+    // only owners can remove users
+    action remove_user =  admin
+
+}
+
+entity project {
+
+    // references for team and organization that project belongs
+    relation owner @user
+    relation team @team
+    relation org @organization
+
+    action view = org.admin or team.member or owner
+    action edit = org.admin or team.member or owner
+    action delete = org.admin
+
+}
